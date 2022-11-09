@@ -27,15 +27,25 @@ final class SignupWebServiceTest: XCTestCase {
   }
   
   func testSignupWebService_WhenGivenSuccesfullResponse_ReturnSuccess() {
-    // Arrange
+    // TODO: Arrange
     let sut = SignupWebService()
     let sigupFormModel =  SignupFormRequestModel(firstName: "Dhika",
                                                  lastName: "Aditya",
                                                  email: "dhika@gmail.com",
-                                                 password: "1234566")
+                                                password: "1234566")
+    let expectation = self.expectation(description: "Signup Web Service Response Expecation")
+    //TODO: - ACT
     sut.signup(withForm: sigupFormModel) { (signupResponseModel, error) in
-      
+      //TODO: - Assert
+      // Backend says format JSON be like -> { \"status\" : \"ok\" }
+      XCTAssertEqual(signupResponseModel?.status, "ok")
+      expectation.fulfill() //Buat flag disini
     }
+    self.wait(for: [expectation], timeout: 5)
+    //
   }
+  
+  //untuk membuat unit test menunggu, kita bisa gunakan self.wait setelah melakukan assert.
+  //
   
 }
