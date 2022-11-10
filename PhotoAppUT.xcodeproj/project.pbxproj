@@ -13,6 +13,7 @@
 		7000DAEE291B528700163A88 /* SignupResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7000DAED291B528700163A88 /* SignupResponseModel.swift */; };
 		7000DAF0291B52F500163A88 /* SignupErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7000DAEF291B52F500163A88 /* SignupErrors.swift */; };
 		7013E2E6291A269800E40DAD /* SignupConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7013E2E5291A269800E40DAD /* SignupConstants.swift */; };
+		702F76F6291CAD9600D47B5A /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702F76F5291CAD9600D47B5A /* MockURLProtocol.swift */; };
 		70EF0557291902D400358ACA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EF0556291902D400358ACA /* AppDelegate.swift */; };
 		70EF0559291902D400358ACA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EF0558291902D400358ACA /* SceneDelegate.swift */; };
 		70EF055B291902D400358ACA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EF055A291902D400358ACA /* ViewController.swift */; };
@@ -50,6 +51,7 @@
 		7000DAED291B528700163A88 /* SignupResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupResponseModel.swift; sourceTree = "<group>"; };
 		7000DAEF291B52F500163A88 /* SignupErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupErrors.swift; sourceTree = "<group>"; };
 		7013E2E5291A269800E40DAD /* SignupConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupConstants.swift; sourceTree = "<group>"; };
+		702F76F5291CAD9600D47B5A /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		70EF0553291902D400358ACA /* PhotoAppUT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoAppUT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		70EF0556291902D400358ACA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70EF0558291902D400358ACA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				7000DAE7291B4D9400163A88 /* SignupWebServiceTest.swift */,
+				702F76F5291CAD9600D47B5A /* MockURLProtocol.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				70EF0587291903F000358ACA /* SignupFormModelValidatorTest.swift in Sources */,
 				70EF056E291902D700358ACA /* PhotoAppUTTests.swift in Sources */,
 				7000DAE8291B4D9400163A88 /* SignupWebServiceTest.swift in Sources */,
+				702F76F6291CAD9600D47B5A /* MockURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

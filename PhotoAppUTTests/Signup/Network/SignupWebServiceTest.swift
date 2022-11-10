@@ -10,42 +10,66 @@ import XCTest
 
 final class SignupWebServiceTest: XCTestCase {
   
-  override class func setUp() {
-    
-  }
-  
-  override class func tearDown() {
-    
-  }
+  public var sut: SignupWebService!
+  public var signupFormRequestModel: SignupFormRequestModel!
   
   override func setUpWithError() throws {
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    let config = URLSessionConfiguration.ephemeral
+    config.protocolClasses = [MockURLProtocol.self]
+    let customURLSession = URLSession(configuration: config)
+    
+    sut = SignupWebService(urlString: SignupConstants.urlSignup, urlSession: customURLSession)
+    signupFormRequestModel =  SignupFormRequestModel(firstName: "Dhika",
+                                                 lastName: "Aditya",
+                                                 email: "dhika@gmail.com",
+                                                 password: "1234566")
   }
   
   override func tearDownWithError() throws {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
+    sut = nil
+    signupFormRequestModel = nil
+    MockURLProtocol.stubResponseData = nil
   }
   
   func testSignupWebService_WhenGivenSuccesfullResponse_ReturnSuccess() {
     // TODO: Arrange
-    let sut = SignupWebService()
-    let sigupFormModel =  SignupFormRequestModel(firstName: "Dhika",
-                                                 lastName: "Aditya",
-                                                 email: "dhika@gmail.com",
-                                                password: "1234566")
+    let jsonString = "{\"status\" : \"ok\"}"
+    MockURLProtocol.stubResponseData = jsonString.data(using: .utf8) //convert jsonString ke data object lalu parsing ke stubResponseData
+    
+    let _ = "http://appsdeveloperblog.com:8080/signup-mock-service/users"
+    let url2 = "https://tlyqhtlbn8.execute-api.us-east-1.amazonaws.com/prod/signup-mock-service/users"
+
     let expectation = self.expectation(description: "Signup Web Service Response Expecation")
+    
     //TODO: - ACT
-    sut.signup(withForm: sigupFormModel) { (signupResponseModel, error) in
+    sut.signup(withForm: signupFormRequestModel) { (signupResponseModel, error) in
       //TODO: - Assert
-      // Backend says format JSON be like -> { \"status\" : \"ok\" }
       XCTAssertEqual(signupResponseModel?.status, "ok")
       expectation.fulfill() //Buat flag disini
     }
+    
     self.wait(for: [expectation], timeout: 5)
-    //
   }
   
-  //untuk membuat unit test menunggu, kita bisa gunakan self.wait setelah melakukan assert.
-  //
+  func testSignupWebService_WhenReceivedDifferentJSONResponse_ErrorTookPlace() {
+    //TODO: Arrange
+    let jsonString = "{\"path\":\"/users\", \"error\":\"internal server error\"}" //kita membuat json string yg mana json string ini belum dipersiapkan oleh kode kita.
+    MockURLProtocol.stubResponseData = jsonString.data(using: .utf8)
+    
+    let expectation = self.expectation(description: "Signup() method expectation for a response that contains a diffrent JSON strcuture")
+    
+    //TODO: ACT
+    sut.signup(withForm: signupFormRequestModel) { signupResponseModel, error in
+      //TODO: Assert
+      //expetasinya 'signupResponseModel' bernilai nil karenga jsonString yg di provide tidak kita persiapkan.
+      XCTAssertNil(signupResponseModel, "The response model for a request containing unknown JSON Response, should have been nil")
+      //ekspetasinya error tidak nil
+      XCTAssertEqual(error, SignupErrors.responseModelParsingError, "The signup() method did not return expected error")
+      expectation.fulfill()
+    }
+    self.wait(for: [expectation], timeout: 5.0)
+  }
   
 }
