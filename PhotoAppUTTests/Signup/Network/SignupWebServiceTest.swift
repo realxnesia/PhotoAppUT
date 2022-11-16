@@ -72,4 +72,35 @@ final class SignupWebServiceTest: XCTestCase {
     self.wait(for: [expectation], timeout: 5.0)
   }
   
+  func testSignupWebService_WhenEmptyURLStringProvided_ReturError() {
+    //TODO: Arrange
+    let expectation = self.expectation(description: "an Empty URL string expectation")
+    sut = SignupWebService(urlString: "")
+    //TODO: ACT
+    sut.signup(withForm: signupFormRequestModel) { signupResponseModel, error in
+      //TODO: Assert
+      XCTAssertEqual(error, SignupErrors.invalidRequestURLString, "The Signup() method didnot return an expacted error for an invalidRequestURL string error")
+      XCTAssertNil(signupResponseModel, "it must be nil")
+      expectation.fulfill()
+    }
+    self.wait(for: [expectation], timeout: 2)
+  
+  }
+  
+  func NotestSignupWebService_WhenURLRequestFails_ReturnsErrorMessageDescription() {
+    //TODO: Arrange
+    let expectation = self.expectation(description: "A Failed request Expectation")
+    let errorDescription = "A localized description of an error"
+    MockURLProtocol.error = SignupErrors.failedRequest(description: errorDescription)
+    
+    //TODO: ACT
+    sut.signup(withForm: signupFormRequestModel) { signupResponseModel, error in
+      //TODO: Assert
+      XCTAssertEqual(error, SignupErrors.failedRequest(description: errorDescription))
+      expectation.fulfill()
+    }
+    
+    self.wait(for: [expectation], timeout: 2)
+  }
+  
 }

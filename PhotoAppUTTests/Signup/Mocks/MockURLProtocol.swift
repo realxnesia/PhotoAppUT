@@ -10,6 +10,7 @@ import Foundation
 class MockURLProtocol: URLProtocol {
     
     static var stubResponseData: Data?
+    static var error: Error? //inject properti
     
     //Determines whether the protocol subclass can handle the spesific request.
     override class func canInit(with request: URLRequest) -> Bool {
@@ -23,8 +24,14 @@ class MockURLProtocol: URLProtocol {
     //Start protocol pesific loading of the request
     //ketika subclass MockURLProtocol dipanggil, ia akan melakukan loading request. Disini kita mencoba untuk mereturn data secara hardcode/predefined daripada menggunakan yg asli.
     override func startLoading() {
-        self.client?.urlProtocol(self, didLoad: MockURLProtocol.stubResponseData ?? Data()) //diload merupakan predefined data yg berbetuk data object
+        if let signupError = MockURLProtocol.error {
+            self.client?.urlProtocol(self, didFailWithError: signupError)
+        } else {
+            self.client?.urlProtocol(self, didLoad: MockURLProtocol.stubResponseData ?? Data()) //diload merupakan predefined data yg berbetuk data object
+        }
+       
         self.client?.urlProtocolDidFinishLoading(self)
+        
     }
     
     override func stopLoading() { }

@@ -7,6 +7,18 @@
 
 import Foundation
 
-enum SignupErrors: Error {
+//Localize error merupakan conform dari Error
+enum SignupErrors: LocalizedError, Equatable {
     case responseModelParsingError
+    case invalidRequestURLString
+    case failedRequest(description: String)
+    
+    var errorDescription: String? {
+        switch self {
+        case .failedRequest(description: let description):
+            return description
+        case .responseModelParsingError, .invalidRequestURLString:
+            return ""
+        }
+    }
 }

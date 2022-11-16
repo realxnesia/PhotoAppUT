@@ -25,6 +25,11 @@
 		70EF057A291902D700358ACA /* PhotoAppUTUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EF0579291902D700358ACA /* PhotoAppUTUITestsLaunchTests.swift */; };
 		70EF0587291903F000358ACA /* SignupFormModelValidatorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EF0586291903F000358ACA /* SignupFormModelValidatorTest.swift */; };
 		70EF0589291905EF00358ACA /* SignupFormModelValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EF0588291905EF00358ACA /* SignupFormModelValidator.swift */; };
+		70F438822924B030006B90B9 /* SignupPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F438812924B030006B90B9 /* SignupPresenterTest.swift */; };
+		70F438842924B18B006B90B9 /* SignupFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F438832924B18B006B90B9 /* SignupFormModel.swift */; };
+		70F438862924B284006B90B9 /* SignupPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F438852924B284006B90B9 /* SignupPresenter.swift */; };
+		70F438882924B645006B90B9 /* MockSignupModelValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F438872924B645006B90B9 /* MockSignupModelValidator.swift */; };
+		70F4388A2924B97F006B90B9 /* SignupModelValidatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F438892924B97F006B90B9 /* SignupModelValidatorProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +72,11 @@
 		70EF0579291902D700358ACA /* PhotoAppUTUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAppUTUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		70EF0586291903F000358ACA /* SignupFormModelValidatorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupFormModelValidatorTest.swift; sourceTree = "<group>"; };
 		70EF0588291905EF00358ACA /* SignupFormModelValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupFormModelValidator.swift; sourceTree = "<group>"; };
+		70F438812924B030006B90B9 /* SignupPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenterTest.swift; sourceTree = "<group>"; };
+		70F438832924B18B006B90B9 /* SignupFormModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupFormModel.swift; sourceTree = "<group>"; };
+		70F438852924B284006B90B9 /* SignupPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPresenter.swift; sourceTree = "<group>"; };
+		70F438872924B645006B90B9 /* MockSignupModelValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSignupModelValidator.swift; sourceTree = "<group>"; };
+		70F438892924B97F006B90B9 /* SignupModelValidatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModelValidatorProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +107,8 @@
 		7000DAF1291B543800163A88 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
+				70F4388C2924C318006B90B9 /* Protocols */,
+				70F4388B2924C2E5006B90B9 /* Presenters */,
 				7000DAF4291B54C600163A88 /* Network */,
 				7000DAF3291B549600163A88 /* Controllers */,
 				7000DAF2291B545B00163A88 /* Models */,
@@ -111,6 +123,7 @@
 				7000DAED291B528700163A88 /* SignupResponseModel.swift */,
 				7013E2E5291A269800E40DAD /* SignupConstants.swift */,
 				7000DAEF291B52F500163A88 /* SignupErrors.swift */,
+				70F438832924B18B006B90B9 /* SignupFormModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -133,6 +146,8 @@
 		7000DAF5291B550700163A88 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
+				70F4388E2924C356006B90B9 /* Mocks */,
+				70F4388D2924C32D006B90B9 /* Presenters */,
 				7000DAF7291B552300163A88 /* Network */,
 				7000DAF6291B551800163A88 /* Models */,
 			);
@@ -151,7 +166,6 @@
 			isa = PBXGroup;
 			children = (
 				7000DAE7291B4D9400163A88 /* SignupWebServiceTest.swift */,
-				702F76F5291CAD9600D47B5A /* MockURLProtocol.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -208,6 +222,39 @@
 				70EF0579291902D700358ACA /* PhotoAppUTUITestsLaunchTests.swift */,
 			);
 			path = PhotoAppUTUITests;
+			sourceTree = "<group>";
+		};
+		70F4388B2924C2E5006B90B9 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				70F438852924B284006B90B9 /* SignupPresenter.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		70F4388C2924C318006B90B9 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				70F438892924B97F006B90B9 /* SignupModelValidatorProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		70F4388D2924C32D006B90B9 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+				70F438812924B030006B90B9 /* SignupPresenterTest.swift */,
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		70F4388E2924C356006B90B9 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				702F76F5291CAD9600D47B5A /* MockURLProtocol.swift */,
+				70F438872924B645006B90B9 /* MockSignupModelValidator.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,12 +388,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70F438862924B284006B90B9 /* SignupPresenter.swift in Sources */,
 				70EF055B291902D400358ACA /* ViewController.swift in Sources */,
 				70EF0557291902D400358ACA /* AppDelegate.swift in Sources */,
 				7000DAEE291B528700163A88 /* SignupResponseModel.swift in Sources */,
 				70EF0589291905EF00358ACA /* SignupFormModelValidator.swift in Sources */,
 				7000DAF0291B52F500163A88 /* SignupErrors.swift in Sources */,
+				70F438842924B18B006B90B9 /* SignupFormModel.swift in Sources */,
 				7013E2E6291A269800E40DAD /* SignupConstants.swift in Sources */,
+				70F4388A2924B97F006B90B9 /* SignupModelValidatorProtocol.swift in Sources */,
 				7000DAEC291B4F9A00163A88 /* SignupFormRequestModel.swift in Sources */,
 				7000DAEA291B4E9100163A88 /* SignupWebService.swift in Sources */,
 				70EF0559291902D400358ACA /* SceneDelegate.swift in Sources */,
@@ -359,8 +409,10 @@
 			files = (
 				70EF0587291903F000358ACA /* SignupFormModelValidatorTest.swift in Sources */,
 				70EF056E291902D700358ACA /* PhotoAppUTTests.swift in Sources */,
+				70F438882924B645006B90B9 /* MockSignupModelValidator.swift in Sources */,
 				7000DAE8291B4D9400163A88 /* SignupWebServiceTest.swift in Sources */,
 				702F76F6291CAD9600D47B5A /* MockURLProtocol.swift in Sources */,
+				70F438822924B030006B90B9 /* SignupPresenterTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
