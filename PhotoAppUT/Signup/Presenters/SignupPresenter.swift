@@ -7,12 +7,18 @@
 
 import Foundation
 
-class SignupPresenter {
+class SignupPresenter: SignupPresenterProtocol {
     
     private var formModelValidator: SignupModelValidatorProtocol
+    private var webService: SignupWebServiceProtocol
+    private weak var delegate: SignupViewDelegateProtocol?
     
-    init(formModelValidator: SignupModelValidatorProtocol) {
+    required init(formModelValidator: SignupModelValidatorProtocol,
+         webservice: SignupWebServiceProtocol,
+         delegate: SignupViewDelegateProtocol) {
         self.formModelValidator = formModelValidator
+        self.webService = webservice
+        self.delegate = delegate
     }
     
     func processUserSignup(with data: SignupFormModel) {
@@ -35,5 +41,22 @@ class SignupPresenter {
         if !formModelValidator.doPasswordMatch(password: data.password, repeatPassword: data.repeatPassword) {
             return
         }
+        
+        let requestModel = SignupFormRequestModel(firstName: data.firstName,
+                                                  lastName: data.lastName,
+                                                  email: data.email,
+                                                  password: data.password)
+        
+        webService.signup(withForm: requestModel) { [weak self] responseModel, error in
+            //TODO: info -> untuk memastikan test kita passed, kita hanya perlu memanggil webservice methodnya
+            if let _ = responseModel {
+                self?.delegate?.successfullSignup()
+                return
+            } else {
+                self?.delegate?.errorHandler(error: SignupErrors.failedRequest(description: "Failed by Dhika"))
+                return
+            }
+        }
     }
+    
 }
